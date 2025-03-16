@@ -26,7 +26,7 @@ const upload=multer({
     limits:{
         fileSize:1000000
     }
-}).single("image")
+})
 // const fileupload = async (req, res) => {
 //     upload(req, res, async (err) => {
 //         if (err) {
