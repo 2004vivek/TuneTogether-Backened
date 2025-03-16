@@ -2,7 +2,7 @@ const upload = require("../controllers/uploadMiddleware");
 const User=require('../models/user')
 exports.Signup = async (req, res) => {
     console.log("hjfdkjkmx")
-    res.send("done");
+  
   try {
     upload(req, res, async (err) => {
     
@@ -45,5 +45,6 @@ exports.Signup = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    res.status(500).json({message:error.message})
   }
 };
