@@ -16,12 +16,12 @@ exports.Signup = async (req, res) => {
     //     return res.status(400).json({ message: "No file uploaded" });
     //   }
 
-      const {email,password,confirmpassword,languages,username}=req.body
+      const {email,password,confirmpassword,languages}=req.body
 
     //   const image= req.image ? req.image.path : null;
     //   console.log("this is image url",image)
             
-            if (!email || !password || !confirmpassword || !username) {
+            if (!email || !password || !confirmpassword ) {
                 return res.status(400).json({ error: 'All fields are required.' });
             }
 
@@ -31,7 +31,6 @@ exports.Signup = async (req, res) => {
 
             // Save user to the database
             const user = new User({
-                username,
                 email,
                 password,
 
