@@ -8,24 +8,19 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Route = require('./routes/routes')
-const fileupload=require("express-fileupload")
-const {connecttocloudinary}=require('./config/cloudinary')
 
-connecttocloudinary()
+
 const corsOptions = {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-app.use(fileupload({
-  useTempFiles:true,
-  tempFileDir:"/tmp/"
-}))
+
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json())
-app.use("/", Route)
+app.use("/api", Route)
 
 const PORT = 9000;
 
@@ -36,7 +31,7 @@ app.get("/",(req,res)=>{
 app.listen(PORT, function (req, res) {
   console.log('Hey I am Responding from Backend')
 })
-mongoose.connect("mongodb+srv://NRY:dd0W8B5ZUDPtxpbF@cluster0.3caki.mongodb.net/")
+mongoose.connect("mongodb+srv://NRY:dd0W8B5ZUDPtxpbF@cluster0.3caki.mongodb.net/test")
   .then((succ) => {
     console.log("Database is Connected Successfully")
   })

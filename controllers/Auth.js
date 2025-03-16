@@ -1,20 +1,49 @@
-const {uploadingimagetocloudinary}=require('../utils/imageuploader')
-exports.Signup=async(req,res)=>{
-    try {
-        const {email,password,cpassword,languages,images,username}=req.body;
-       
-        console.log(req.body)
-        const formDataArray = req.body.formData._parts;
-        const imageObject = formDataArray.find(item => item[0] === 'image')?.[1];
-        
-        console.log(imageObject);
+const upload = require("../controllers/uploadMiddleware");
+const User=require('../models/user')
+exports.Signup = async (req, res) => {
+    console.log("hjfdkjkmx")
+    res.send("done");
+//   try {
+//     upload(req, res, async (err) => {
+    
+//       if (err) {
+//         return res
+//           .status(500)
+//           .json({ message: "File upload error", error: err });
+//       }
 
-        const imageurl=await uploadingimagetocloudinary(imageObject,"TuneTogether")
-        console.log(imageurl)
-       
+//       if (!req.file) {
+//         return res.status(400).json({ message: "No file uploaded" });
+//       }
 
-       
-    } catch (error) {
-        console.log(error)
-    }
-}
+//       const {email,password,cpassword,languages,username}=req.body
+
+//       const image= req.file ? req.file.path : null;
+//       console.log("this is image url",image)
+            
+//             if (!email || !password || !cpassword || !username) {
+//                 return res.status(400).json({ error: 'All fields are required.' });
+//             }
+
+//             if (password !== cpassword) {
+//                 return res.status(400).json({ error: 'Passwords do not match.' });
+//             }
+
+//             // Save user to the database
+//             const user = new User({
+//                 username,
+//                 email,
+//                 password,
+//                 languages: languages ? languages.split(',') : [],
+//                 image,
+//             });
+
+//             await user.save();
+
+//             res.status(201).json({ message: 'User registered successfully!', user });
+
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+};
