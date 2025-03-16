@@ -34,7 +34,7 @@ exports.Signup = async (req, res) => {
                 email,
                 password,
 
-                languages: languages ? languages.split(',') : [],
+                languages: languages,
                
             });
 
