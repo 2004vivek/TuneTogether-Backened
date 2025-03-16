@@ -4,28 +4,28 @@ exports.Signup = async (req, res) => {
     console.log("hjfdkjkmx")
   
   try {
-    upload(req, res, async (err) => {
+    // upload(req, res, async (err) => {
     
-      if (err) {
-        return res
-          .status(500)
-          .json({ message: "File upload error", error: err });
-      }
+    //   if (err) {
+    //     return res
+    //       .status(500)
+    //       .json({ message: "File upload error", error: err });
+    //   }
 
-      if (!req.image) {
-        return res.status(400).json({ message: "No file uploaded" });
-      }
+    //   if (!req.image) {
+    //     return res.status(400).json({ message: "No file uploaded" });
+    //   }
 
-      const {email,password,cpassword,languages,username}=req.body
+      const {email,password,confirmpassword,languages,username}=req.body
 
-      const image= req.image ? req.image.path : null;
-      console.log("this is image url",image)
+    //   const image= req.image ? req.image.path : null;
+    //   console.log("this is image url",image)
             
-            if (!email || !password || !cpassword || !username) {
+            if (!email || !password || !confirmpassword || !username) {
                 return res.status(400).json({ error: 'All fields are required.' });
             }
 
-            if (password !== cpassword) {
+            if (password !== confirmpassword) {
                 return res.status(400).json({ error: 'Passwords do not match.' });
             }
 
@@ -34,15 +34,16 @@ exports.Signup = async (req, res) => {
                 username,
                 email,
                 password,
+
                 languages: languages ? languages.split(',') : [],
-                image,
+               
             });
 
             await user.save();
 
             res.status(201).json({ message: 'User registered successfully!', user });
 
-    });
+    // });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({message:"error occured",error:error.message})
