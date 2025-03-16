@@ -12,13 +12,13 @@ exports.Signup = async (req, res) => {
           .json({ message: "File upload error", error: err });
       }
 
-      if (!req.file) {
+      if (!req.image) {
         return res.status(400).json({ message: "No file uploaded" });
       }
 
       const {email,password,cpassword,languages,username}=req.body
 
-      const image= req.file ? req.file.path : null;
+      const image= req.image ? req.image.path : null;
       console.log("this is image url",image)
             
             if (!email || !password || !cpassword || !username) {
